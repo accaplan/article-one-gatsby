@@ -1,17 +1,17 @@
 const sanityClient = require('@sanity/client');
 
 const {
-  SANITY_API_TOKEN,
-  SANITY_PROJECT_ID,
-  SANITY_DATASET,
+  REACT_APP_SANITY_API_TOKEN,
+  REACT_APP_SANITY_PROJECT_ID,
+  REACT_APP_SANITY_DATASET,
 } = process.env;
 
-console.log(`this is the projectID`, SANITY_PROJECT_ID )
+console.log(`this is the projectID`, REACT_APP_SANITY_PROJECT_ID )
 
 const client = sanityClient({
-  projectId: SANITY_PROJECT_ID,
-  dataset: SANITY_DATASET,
-  token: SANITY_API_TOKEN,
+  projectId: REACT_APP_SANITY_PROJECT_ID,
+  dataset: REACT_APP_SANITY_DATASET,
+  token: REACT_APP_SANITY_API_TOKEN,
 });
 
 exports.handler = async (event, context) => {
