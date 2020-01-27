@@ -1,0 +1,103 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3860443, 2020-01-27T11:25:58-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: HelveticaNowText-Regular by Monotype
+ * URL: https://www.myfonts.com/fonts/mti/helvetica-now/text-regular/
+ * Copyright: Copyright © 2019 Monotype Imaging Inc. All rights reserved.
+ * Licensed pageviews: 250,000
+ * 
+ * 
+ * 
+ * © 2020 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3ae7db");
+@import '../../_colors.scss';
+
+  
+@font-face {
+    font-family: 'HelveticaNowText-Regular';
+    src: url('../../font/3AE7DB_0_0.eot');
+    src: url('../../font/3AE7DB_0_0.eot?#iefix') format('embedded-opentype'),
+    url('../../font/3AE7DB_0_0.woff2') format('woff2'),
+    url('../../font/3AE7DB_0_0.woff') format('woff'),
+    url('../../font/3AE7DB_0_0.ttf') format('truetype');
+}
+
+html {
+    font-size: 15px;
+    font-family: 'HelveticaNowText-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+body {
+  color: $bodycolor;
+  font-family: 'HelveticaNowText-Regular', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 14px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+ 
+img {
+    max-width: 100%;
+    width: 100%;
+    vertical-align: top;
+}
+
+%full-width {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media (min-width: 768px) {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+%block-title {
+  font-size: 1.714em;
+  .block-title {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+}
+
+.circle-link {
+    display: flex;
+    align-items: center;
+    color: $bodycolor;
+  
+    .circle {
+      border-radius: 50%;
+      border: 1px solid;
+      border-color: inherit;
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-right: 5px;
+    }
+    &:hover {
+      .circle {
+        background-color: $bodycolor;
+      }
+    }
+}
