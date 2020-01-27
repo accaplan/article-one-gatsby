@@ -10,7 +10,7 @@ const Header = props => {
 		<header className='header'>
 			<div className="header-navigation">
 				<div className='logo'>
-				<a href='/'>Article One</a>
+				<Link to='/'>Article One</Link>
 				</div>
 				<nav className='header-links'>
 				<Link to='/search' className='hide-mobile' id='search-link'>Search </Link>
