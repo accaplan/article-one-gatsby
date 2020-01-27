@@ -6,8 +6,6 @@ const {
   REACT_APP_SANITY_DATASET,
 } = process.env;
 
-console.log(`this is the REACT_APP_SANITY_PROJECT_ID`, REACT_APP_SANITY_PROJECT_ID )
-
 const client = sanityClient({
   projectId: REACT_APP_SANITY_PROJECT_ID,
   dataset: REACT_APP_SANITY_DATASET,
@@ -27,7 +25,7 @@ exports.handler = async (event, context) => {
 
   try {
     data = JSON.parse(event.body);
-    console.log(data)
+    
   } catch (error) {
     console.log('JSON parsing error:', error);
 
@@ -38,6 +36,8 @@ exports.handler = async (event, context) => {
       })
     };
   }
+
+  console.log(data)
 
   // Build our initial product
   const product = {
@@ -60,7 +60,7 @@ exports.handler = async (event, context) => {
     .patch(data.id.toString(), patch => patch.set(product))
     .commit()
     .then(res => {
-      console.log(`Successfully updated/patched Product ${data.id} in Sanity`);
+      console.log(`Successfully updated/patched Product ${data.id} ${data.title} in Sanity`);
 
       if (data.variants.length > 1) {
         hasVariantsToSync = true;
@@ -68,7 +68,7 @@ exports.handler = async (event, context) => {
         return Promise.all(data.variants.map(variant => {
           const variantData = {
             _type: 'productVariant',
-            _id: variant.id.toString(),
+            _id: variant.id,
             productId: data.product_id,
             variantId: variant.id,
             title: data.title,
@@ -83,7 +83,7 @@ exports.handler = async (event, context) => {
             .patch(variant.id.toString(), patch => patch.set(variantData))
             .commit()
             .then(response => {
-              console.log(`Successfully updated/patched Variant ${variant.id} in Sanity`);
+              console.log(`Successfully updated/patched Variant ${variant.id} ${variant.title} in Sanity`);
               return response;
             })
             .catch(error => {
