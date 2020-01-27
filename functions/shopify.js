@@ -27,6 +27,7 @@ exports.handler = async (event, context) => {
 
   try {
     data = JSON.parse(event.body);
+    console.log(data)
   } catch (error) {
     console.log('JSON parsing error:', error);
 
