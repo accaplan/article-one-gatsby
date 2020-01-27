@@ -36,7 +36,6 @@ exports.handler = async (event, context) => {
       })
     };
   }
-  console.log(`DATA`, data)
   // Build our initial product
   const product = {
     _type: 'product',
