@@ -45,8 +45,8 @@ exports.handler = async (event, context) => {
     productId: data.id,
     title: data.title,
     defaultPrice: data.variants[0].price,
-    type: data.productType,
-    mainImage: data.images[0].src,
+    type: data.product_type,
+    defaultImage: data.images[0].src,
     slug: {
       _type: 'slug',
       current: data.handle
@@ -68,13 +68,12 @@ exports.handler = async (event, context) => {
           const variantData = {
             _type: 'productVariant',
             _id: variant.id.toString(),
-            productId: data.id,
+            productId: data.product_id,
             variantId: variant.id,
             title: data.title,
             variantTitle: variant.title,
             sku: variant.sku,
             price: variant.price,
-            mainImage: variant.image.src,
           };
 
           return client
