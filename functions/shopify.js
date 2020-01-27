@@ -36,9 +36,7 @@ exports.handler = async (event, context) => {
       })
     };
   }
-
-  console.log(data)
-
+  console.log(`DATA`, data)
   // Build our initial product
   const product = {
     _type: 'product',
@@ -68,7 +66,7 @@ exports.handler = async (event, context) => {
         return Promise.all(data.variants.map(variant => {
           const variantData = {
             _type: 'productVariant',
-            _id: variant.id,
+            _id: variant.id.toString(),
             productId: data.product_id,
             variantId: variant.id,
             title: data.title,
