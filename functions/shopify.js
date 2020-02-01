@@ -151,6 +151,12 @@ exports.handler = async (event, context) => {
     // this is triggered if Shopify sends a Product Deletion webhook that does NOT contain anything besides an ID
     // uncomment the version you'd like to use
 
+    const product = {
+      _type: 'product',
+      _id: data.id.toString(),
+      productId: data.id,
+    };
+
     // MARK AS DELETED, BUT KEEP IN SANITY
     return client
       .transaction()
@@ -174,5 +180,5 @@ exports.handler = async (event, context) => {
     //     .catch(err => {
     //       console.error('Delete failed: ', err.message)
     //     })
-    // }
+    }
   };
