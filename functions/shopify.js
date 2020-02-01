@@ -6,7 +6,7 @@ const {
   REACT_APP_SANITY_DATASET,
 } = process.env;
 
-console.log(`SANITY PROJECT ID is ${SANITY_PROJECT_ID}`)
+console.log(`SANITY PROJECT ID is ${REACT_APP_SANITY_PROJECT_ID}`)
 
 const client = sanityClient({
   projectId: REACT_APP_SANITY_PROJECT_ID,
