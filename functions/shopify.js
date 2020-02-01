@@ -14,7 +14,7 @@ const client = sanityClient({
   token: REACT_APP_SANITY_API_TOKEN,
 });
 
-console.log(`projectId is ${projectId}`)
+console.log(client.projectId)
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST' || !event.body) {
