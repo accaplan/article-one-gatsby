@@ -6,11 +6,15 @@ const {
   SANITY_DATASET,
 } = process.env;
 
+console.log(`SANITY PROJECT ID is ${SANITY_PROJECT_ID}`)
+
 const client = sanityClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   token: SANITY_API_TOKEN,
 });
+
+console.log(`projectId is ${projectId}`)
 
 exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST' || !event.body) {
