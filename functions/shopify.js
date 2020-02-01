@@ -12,6 +12,7 @@ const client = sanityClient({
   projectId: REACT_APP_SANITY_PROJECT_ID,
   dataset: REACT_APP_SANITY_DATASET,
   token: REACT_APP_SANITY_API_TOKEN,
+  useCdn: true
 });
 
 console.log(client.projectId)
@@ -163,7 +164,6 @@ exports.handler = async (event, context) => {
 
     // MARK AS DELETED, BUT KEEP IN SANITY
     return client
-      .transaction()
       .patch(data.id.toString())
       .set({deleted: true})
       .commit()
@@ -176,7 +176,6 @@ exports.handler = async (event, context) => {
 
     // DELETE FROM SANITY
     //   return client
-    //     .transaction()
     //     .delete(data.id.toString())
     //     .then(res => {
     //       console.log(`Successfully deleted product ${data.id}`)
