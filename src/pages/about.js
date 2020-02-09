@@ -7,64 +7,24 @@ const BlockContent = require('@sanity/block-content-to-react')
 
 const About = props => {
   const data = useStaticQuery(graphql`
-      {
-        allSanitySiteSettings {
-          edges {
-            node {
-              about {
-                _key
-                _type
-                style
-                list
-                sanityChildren {
-                  _key
-                  _type
-                  text
-                  marks
-                }
-              }
-              address {
-                _key
-                _type
-                style
-                list
-                sanityChildren {
-                  _key
-                  _type
-                  text
-                }
-              }
-              description
-              facebook
-              instagram
-              phone
-              returns {
-                _key
-                _type
-                style
-                list
-                sanityChildren {
-                  _key
-                  _type
-                  text
-                }
-              }
-              shipping {
-                _key
-                _type
-                style
-                list
-                sanityChildren {
-                  _key
-                  _type
-                  text
-                }
-              }
-            }
-          }
+    {
+      allSanitySiteSettings {
+        nodes {
+          _rawAbout
+          _rawAddress
+          _rawLogoImages
+          _rawReturns
+          _rawShipping
+          description
+          instagram
+          facebook
+          phone
+          title
         }
       }
+    }
   `)
+
   
   return (
     <Layout>
@@ -77,18 +37,15 @@ const About = props => {
           <section class="about-us-content">
             <div class="about-row">
               <p class='key'>Article One</p>
-              {data.allSanitySiteSettings.edges[0].node.about && (
-                <BlockContent blocks={data.allSanitySiteSettings.edges[0].node.about} />
-              )}
+            {data.allSanitySiteSettings.nodes[0]._rawAbout && (<div class="value"> <BlockContent blocks={data.allSanitySiteSettings.nodes[0]._rawAbout} /> </div>)}
             </div>
 
           </section>
+
           <section class='about-ao'>
             <div class="about-row">
               <p class='key'>Shop</p>
-              {data.allSanitySiteSettings.edges[0].node.address && (<div class="value">
-                <BlockContent blocks={data.allSanitySiteSettings.edges[0].node.address}/>
-              </div>)}
+              {data.allSanitySiteSettings.nodes[0]._rawAddress && (<div class="value"> <BlockContent blocks={data.allSanitySiteSettings.nodes[0]._rawAddress}/> </div>)}
             </div>
             <div class="about-row">
               <p class='key'>Contact</p>
@@ -98,43 +55,29 @@ const About = props => {
             </div>
             <div class="about-row">
               <p class="key">Phone</p>
-              <div class="value">
-                {data.allSanitySiteSettings.edges[0].node.phone && (
-                  <p><a href={`tel:${data.allSanitySiteSettings.edges[0].node.phone.trim()}`}>{data.allSanitySiteSettings.edges[0].node.phone.trim()}</a></p>
-                )}
-              </div>
+              {data.allSanitySiteSettings.nodes[0].phone && ( <div class="value"> <p><a href={`tel:${data.allSanitySiteSettings.nodes[0].phone.trim()}`}>{data.allSanitySiteSettings.nodes[0].phone.trim()}</a></p> </div> )}
             </div>
             <div class="about-row">
               <p class='key'>Instagram</p>
-              <div class="value">
-                {data.allSanitySiteSettings.edges[0].node.instagram && (
-                  <a href={`https://www.instagram.com/${data.allSanitySiteSettings.edges[0].node.instagram}`} target={'_blank'} rel={'noopenner noreferrer'}>@{data.allSanitySiteSettings.edges[0].node.instagram}</a>
-                )}
-              </div>
+              {data.allSanitySiteSettings.nodes[0].instagram && ( <div class="value"> <a href={`https://www.instagram.com/${data.allSanitySiteSettings.nodes[0].instagram}`} target={'_blank'} rel={'noopenner noreferrer'}>@{data.allSanitySiteSettings.nodes[0].instagram}</a> </div> )}
             </div>
             <div class="about-row">
               <p class='key'>Facebook</p>
               <div class="value">
-                {data.allSanitySiteSettings.edges[0].node.facebook && (
-                  <a href={data.allSanitySiteSettings.edges[0].node.facebook}>Facebook</a>
+                {data.allSanitySiteSettings.nodes[0].facebook && (
+                  <a href={data.allSanitySiteSettings.nodes[0].facebook}>Facebook</a>
                 )}
               </div>
             </div>
             <div class="about-row">
               <p class='key'>Shipping Information</p>
-              <div class="value">
-                {data.allSanitySiteSettings.edges[0].node.shipping && (
-                  <BlockContent blocks={data.allSanitySiteSettings.edges[0].node.shipping} />
+                {data.allSanitySiteSettings.nodes[0]._rawShipping && ( <div class="value"> <BlockContent blocks={data.allSanitySiteSettings.nodes[0]._rawShipping} /> </div>
                 )}
-              </div>
             </div>
             <div class="about-row">
               <p class='key'>Returns & Exchanges</p>
-              <div class="value">
-                {data.allSanitySiteSettings.edges[0].node.returns && (
-                  <BlockContent blocks={data.allSanitySiteSettings.edges[0].node.returns} />
+                {data.allSanitySiteSettings.nodes[0]._rawReturns && ( <div class="value"> <BlockContent blocks={data.allSanitySiteSettings.nodes[0]._rawReturns} /> </div>
                 )}
-              </div>
             </div>
           </section>
 
