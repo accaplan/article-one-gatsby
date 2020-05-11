@@ -1,15 +1,21 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { useMediaQuery } from "react-responsive"
+import SearchBar from "./SearchBar"
+import SearchIcon from "../images/search.svg"
 
 const HeaderWrapper = styled.header`
-  border-bottom: 1px solid;
+  position: sticky;
+  top: 0;
+  z-index: 3;
 `
 
 const DesktopHeaderWrapper = styled.nav`
   padding: 13px 25px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid;
+  background-color: white;
 `
 
 const Logo = styled.h1``
@@ -19,13 +25,22 @@ const Nav = styled.nav``
 const Link = styled.a`
   text-transform: uppercase;
   margin-left: 25px;
+  cursor: pointer;
   &:first-of-type {
     margin: 0;
   }
 `
 
+const SearchImg = styled.img`
+  height: 0.85em;
+  width: auto;
+  padding-left: 5px;
+  vertical-align: baseline;
+`
+
 const Header = props => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" })
 
@@ -72,9 +87,18 @@ const Header = props => {
                 {item.title}
               </Link>
             ))}
+            <Link onClick={() => setSearchOpen(!searchOpen)}>
+              Search <SearchImg src={SearchIcon} />
+            </Link>
+            <Link>Cart (0)</Link>
           </Nav>
         </DesktopHeaderWrapper>
       )}
+      <SearchBar
+        size={"desktop"}
+        open={searchOpen}
+        onClick={() => setSearchOpen(false)}
+      />
     </HeaderWrapper>
   )
 }

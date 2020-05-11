@@ -92,3 +92,12 @@ img {
   width: 100%;
   vertical-align: top;
 }
+
+input,
+textarea,
+select,
+button {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
