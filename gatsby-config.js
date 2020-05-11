@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Article One Eyewear`,
@@ -28,17 +28,18 @@ module.exports = {
         icon: `src/images/favicon/apple-icon.png`, // This path is relative to the root of the site.
       },
     },
-	{
-		resolve: 'gatsby-source-sanity',
-		options: {
-			projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
-      dataset: process.env.REACT_APP_SANITY_DATASET,
-      token: process.env.REACT_APP_SANITY_API_TOKEN,
-      watchMode: true,
-      overlayDrafts: true
-		}
-	},
-	`gatsby-plugin-sass`
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
+        dataset: process.env.REACT_APP_SANITY_DATASET,
+        token: process.env.REACT_APP_SANITY_API_TOKEN,
+        watchMode: true,
+        overlayDrafts: true,
+      },
+    },
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-styled-components`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

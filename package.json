@@ -7,6 +7,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^0.147.3",
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
@@ -14,16 +15,18 @@
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sass": "^2.1.27",
     "gatsby-plugin-sharp": "^2.3.5",
+    "gatsby-plugin-styled-components": "^3.3.1",
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-source-sanity": "^5.0.5",
     "gatsby-transformer-sharp": "^2.3.7",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-responsive": "^8.0.1",
-    "reset-css": "^5.0.1"
+    "reset-css": "^5.0.1",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"

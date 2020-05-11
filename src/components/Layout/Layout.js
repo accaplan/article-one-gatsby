@@ -4,15 +4,14 @@ import PropTypes from "prop-types"
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import { useStaticQuery, graphql } from "gatsby"
-import 'reset-css'
-import './Layout.scss'
+import "reset-css"
+import "./Layout.scss"
 
 const Layout = ({ children }) => {
-
   return (
     <>
-      <Header/>
-        <main>{children}</main>
+      <Header />
+      {children}
       <Footer />
     </>
   )
