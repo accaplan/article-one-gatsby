@@ -31,17 +31,51 @@
     url("../../font/3AE7DB_0_0.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "TimesDot-Regular";
+  src: url("../../font/Times-Roman.eot");
+  src: url("../../font/Times-Roman.eot?#iefix") format("embedded-opentype"),
+    url("../../font/Times-Roman.woff2") format("woff2"),
+    url("../../font/Times-Roman.woff") format("woff");
+}
+
+@font-face {
+  font-family: "TimesDot-Italic";
+  src: url("../../font/Times-Italic.eot");
+  src: url("../../font/Times-Italic.eot?#iefix") format("embedded-opentype"),
+    url("../../font/Times-Italic.woff2") format("woff2"),
+    url("../../font/Times-Italic.woff") format("woff");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "TimesNow-Regular";
+  src: url("../../font/TimesNow-SemiLight.eot");
+  src: url("../../font/TimesNow-SemiLight.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../font/TimesNow-SemiLight.woff2") format("woff2"),
+    url("../../font/TimesNow-SemiLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "TimesNow-Italic";
+  src: url("../../font/TimesNow-SemiLightItalic.eot");
+  src: url("../../font/TimesNow-SemiLightItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../font/TimesNow-SemiLightItalic.woff2") format("woff2"),
+    url("../../font/TimesNow-SemiLightItalic.woff") format("woff");
+  font-style: italic;
+}
+
 html {
-  font-size: 15px;
-  font-family: "HelveticaNowText-Regular", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  font-size: 13px;
 }
 
 body {
   color: $bodycolor;
   font-family: "HelveticaNowText-Regular", "Helvetica Neue", Helvetica,
     sans-serif;
-  font-size: 13px;
+  font-size: 100%;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -57,45 +91,4 @@ img {
   max-width: 100%;
   width: 100%;
   vertical-align: top;
-}
-
-%full-width {
-  padding-left: 15px;
-  padding-right: 15px;
-
-  @media (min-width: 768px) {
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-}
-
-%block-title {
-  font-size: 1.714em;
-  .block-title {
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-}
-
-.circle-link {
-  display: flex;
-  align-items: center;
-  color: $bodycolor;
-
-  .circle {
-    border-radius: 50%;
-    border: 1px solid;
-    border-color: inherit;
-    width: 0.75rem;
-    height: 0.75rem;
-    margin-right: 5px;
-  }
-  &:hover {
-    .circle {
-      background-color: $bodycolor;
-    }
-  }
 }
