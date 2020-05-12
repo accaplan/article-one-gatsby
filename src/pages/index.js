@@ -13,9 +13,10 @@ const PostsWrapper = styled.main`
 const PostLink = styled.article`
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 15px;
 
   @media (min-width: 1024px) {
+    padding: 20px;
     &:nth-of-type(5n + 1),
     &:nth-of-type(5n + 2) {
       width: 50%;
@@ -39,13 +40,29 @@ const PostLink = styled.article`
 
 const Thumbnail = styled.section``
 
-const PostInfo = styled.section``
+const PostInfo = styled.section`
+  position: relative;
+`
 
-const Title = styled.h2``
+const Title = styled.h2`
+  text-transform: uppercase;
+  padding: 20px 0 10px;
+`
 
-const Subtitle = styled.h3``
+const Subtitle = styled.h3`
+  font-family: "TimesDot-Regular";
+  font-size: 14px;
+  line-height: 1.125;
+`
 
-const PostCategory = styled.p``
+const PostCategory = styled.p`
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  color: grey;
+  font-family: "TimesDot-Regular";
+  text-transform: lowercase;
+`
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -111,7 +128,7 @@ const IndexPage = () => {
                   <PostInfo>
                     <Title>{post.title}</Title>
                     <Subtitle>{post.subhead}</Subtitle>
-                    <PostCategory>{post.category[0].title}</PostCategory>
+                    <PostCategory>({post.category[0].title})</PostCategory>
                   </PostInfo>
                 </Link>
               </PostLink>

@@ -2,7 +2,11 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import ArrowForward from "../images/arrow-forward.svg"
 
-const MobileForm = styled.form``
+const MobileForm = styled.form`
+  border-bottom: 1px solid;
+  display: flex;
+  width: 100%;
+`
 
 const SearchFormWrapper = styled.section`
   border-bottom: 1px solid #222;
@@ -38,8 +42,26 @@ const Input = styled.input`
   }
 `
 
+const MobileInput = styled.input`
+  flex: 1;
+  padding: 15px;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+`
+
 const SearchButton = styled.button`
   padding: 10px 25px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: 1px solid transparent;
+  }
+`
+
+const MobileSearchButton = styled.button`
+  padding: 0 15px;
   background: #fff;
   border: none;
   cursor: pointer;
@@ -65,7 +87,12 @@ const SearchBar = ({ size, open }) => {
   return (
     <>
       {size === "mobile" ? (
-        <MobileForm></MobileForm>
+        <MobileForm onSubmit={handleSearch}>
+          <MobileInput type="text" placeholder="Search" name="search" />
+          <MobileSearchButton type="submit">
+            <ArrowImg src={ArrowForward} />
+          </MobileSearchButton>
+        </MobileForm>
       ) : (
         <SearchFormWrapper className={open ? "open" : ""}>
           <SearchForm onSubmit={handleSearch}>

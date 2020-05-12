@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { useMediaQuery } from "react-responsive"
 import SearchBar from "./SearchBar"
+import MobileMenu from "./MobileMenu"
 import SearchIcon from "../images/search.svg"
+import MobileMenuIcon from "../images/menu.svg"
 
 const HeaderWrapper = styled.header`
   position: sticky;
@@ -11,11 +13,19 @@ const HeaderWrapper = styled.header`
 `
 
 const DesktopHeaderWrapper = styled.nav`
-  padding: 13px 25px;
+  padding: 12px 25px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid;
   background-color: white;
+`
+
+const MobileHeader = styled.nav`
+  border-bottom: 1px solid;
+  background-color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
 `
 
 const Logo = styled.h1``
@@ -29,6 +39,12 @@ const Link = styled.a`
   &:first-of-type {
     margin: 0;
   }
+  &.mobile-logo {
+    position: absolute;
+    text-align: center;
+    left: 30%;
+    right: 30%;
+  }
 `
 
 const SearchImg = styled.img`
@@ -36,6 +52,11 @@ const SearchImg = styled.img`
   width: auto;
   padding-left: 5px;
   vertical-align: baseline;
+`
+
+const MenuImg = styled.img`
+  height: 13px;
+  width: auto;
 `
 
 const Header = props => {
@@ -73,33 +94,42 @@ const Header = props => {
     },
   ]
   return (
-    <HeaderWrapper>
-      {isTabletOrMobile ? (
-        ""
-      ) : (
-        <DesktopHeaderWrapper>
-          <Logo>
-            <Link href={home}>Article One</Link>
-          </Logo>
-          <Nav>
-            {links.map((item, index) => (
-              <Link href={item.link} key={index}>
-                {item.title}
-              </Link>
-            ))}
-            <Link onClick={() => setSearchOpen(!searchOpen)}>
-              Search <SearchImg src={SearchIcon} />
+    <>
+      <HeaderWrapper>
+        {isTabletOrMobile ? (
+          <MobileHeader>
+            <MenuImg src={MobileMenuIcon} onClick={() => setMenuOpen(true)} />
+            <Link href={home} className="mobile-logo">
+              Article One
             </Link>
             <Link>Cart (0)</Link>
-          </Nav>
-        </DesktopHeaderWrapper>
-      )}
-      <SearchBar
-        size={"desktop"}
-        open={searchOpen}
-        onClick={() => setSearchOpen(false)}
-      />
-    </HeaderWrapper>
+          </MobileHeader>
+        ) : (
+          <DesktopHeaderWrapper>
+            <Logo>
+              <Link href={home}>Article One</Link>
+            </Logo>
+            <Nav>
+              {links.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  {item.title}
+                </Link>
+              ))}
+              <Link onClick={() => setSearchOpen(!searchOpen)}>
+                Search <SearchImg src={SearchIcon} />
+              </Link>
+              <Link>Cart (0)</Link>
+            </Nav>
+          </DesktopHeaderWrapper>
+        )}
+        <SearchBar
+          size={"desktop"}
+          open={searchOpen}
+          onClick={() => setSearchOpen(false)}
+        />
+      </HeaderWrapper>
+      <MobileMenu open={menuOpen} onClick={() => setMenuOpen(false)} />
+    </>
   )
 }
 
