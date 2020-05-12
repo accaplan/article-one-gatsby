@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar"
 import MobileMenu from "./MobileMenu"
 import SearchIcon from "../images/search.svg"
 import MobileMenuIcon from "../images/menu.svg"
+import CartIcon from "../images/cart.svg"
 
 const HeaderWrapper = styled.header`
   position: sticky;
@@ -58,6 +59,10 @@ const MenuImg = styled.img`
   height: 13px;
   width: auto;
 `
+const CartImg = styled.img`
+  height: 16px;
+  width: auto;
+`
 
 const Header = props => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -102,7 +107,7 @@ const Header = props => {
             <Link href={home} className="mobile-logo">
               Article One
             </Link>
-            <Link>Cart (0)</Link>
+            <CartImg src={CartIcon} />
           </MobileHeader>
         ) : (
           <DesktopHeaderWrapper>
