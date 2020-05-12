@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../components/Layout/Layout"
+import SEO from "../components/seo"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import BlockContent from "@sanity/block-content-to-react"
@@ -131,6 +132,7 @@ const BlogPost = ({ pageContext }) => {
   console.log(pageContext)
   return (
     <Layout>
+      <SEO title={pageContext.title} />
       <PostWrapper>
         <PostIntroSection>
           <PostIntro>
