@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/Layout/Layout"
+import CategoryBar from "../components/CategoryBar"
 import SEO from "../components/seo"
 import styled from "styled-components"
 
@@ -105,17 +106,37 @@ const IndexPage = () => {
 
   const [allPosts] = useState(data.allSanityPost.nodes)
   const [allCategories] = useState(
-    data.allSanityCategory.nodes.concat({ title: "All" })
+    data.allSanityCategory.nodes.concat({ title: "All Stories" })
   )
-  const [currentCategory] = useState({ title: "All" })
-  const [currentPosts] = useState(data.allSanityPost.nodes)
+  const [currentCategory, setCurrentCategory] = useState({
+    title: "All Stories",
+  })
+  const [currentPosts, setCurrentPosts] = useState(data.allSanityPost.nodes)
 
-  // debugger
+  const filterCategories = value => {
+    let newCurrentPosts
+    const newCurrentCategory = allCategories.find(cat => cat.title === value)
+
+    if (value === "All Stories") {
+      newCurrentPosts = data.allSanityPost.nodes
+    } else {
+      newCurrentPosts = allPosts.filter(
+        post => post.category[0].title === value
+      )
+    }
+
+    setCurrentPosts(newCurrentPosts)
+    setCurrentCategory(newCurrentCategory)
+  }
 
   return (
     <Layout>
       <SEO title="Home" />
-
+      <CategoryBar
+        categories={allCategories}
+        currentCategory={currentCategory}
+        onClick={filterCategories}
+      />
       <PostsWrapper>
         {currentPosts &&
           currentPosts.map(post => {
