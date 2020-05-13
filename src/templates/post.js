@@ -58,7 +58,7 @@ const PostTitle = styled.h1`
 
 const PostSubTitle = styled.h2`
   font-size: 1.5em;
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
 
   @media (min-width: 1024px) {
     font-size: 2em;
@@ -79,7 +79,7 @@ const PostSubTitle = styled.h2`
 const PostByline = styled.p``
 
 const BylineName = styled.span`
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
   font-size: 1.125rem;
 `
 

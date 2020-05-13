@@ -53,7 +53,7 @@ const MobileHeaderTitle = styled.button`
 `
 
 const CurrentCategory = styled.span`
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
   font-size: 16px;
   border-bottom: 1px solid;
 `
@@ -72,7 +72,7 @@ const MobileCategoryList = styled.ul`
 const MobileCategoryListItem = styled.li`
   padding: 10px 15px;
   font-size: 16px;
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
 `
 
 const MobileFilterArrow = styled.img`

@@ -51,7 +51,7 @@ const Title = styled.h2`
 `
 
 const Subtitle = styled.h3`
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
   font-size: 14px;
   line-height: 1.125;
 `
@@ -61,7 +61,7 @@ const PostCategory = styled.p`
   top: 15px;
   right: 0px;
   color: grey;
-  font-family: "TimesDot-Regular";
+  font-family: "TimesNow-Regular";
   text-transform: lowercase;
 `
 
