@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/Layout/Layout"
 import SEO from "../components/seo"
 import styled from "styled-components"
@@ -93,17 +93,26 @@ const PostBodyWrapper = styled.main`
 
 const IntroText = styled(BlockContent)``
 
+const BodyText = styled(BlockContent)``
+
 const ImageCaption = styled.figcaption``
 
 const FullBleedImage = styled.figure``
 
 const InlineImage = styled(FullBleedImage)``
 
+const TwoPhotoWide = styled.aside``
+
+const TwoPhotoMedium = styled(TwoPhotoWide)``
+
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
     switch (section._type) {
       case "introText":
-        return <IntroText />
+        const blocks = pageContext._rawBody.find(
+          item => item._key === section._key
+        )
+        return <IntroText blocks={blocks.intro} />
       case "fullBleedPhoto":
         return (
           <FullBleedImage>
@@ -114,7 +123,10 @@ const BlogPost = ({ pageContext }) => {
           </FullBleedImage>
         )
       case "bodyText":
-        return "BodyText"
+        const textBlocks = pageContext._rawBody.find(
+          item => item._key === section._key
+        )
+        return <BodyText blocks={textBlocks.textContent} />
       case "inlinePhoto":
         return (
           <InlineImage>
@@ -124,6 +136,25 @@ const BlogPost = ({ pageContext }) => {
             )}
           </InlineImage>
         )
+      case "twoPhotoMedium":
+        return (
+          <TwoPhotoMedium>
+            {section.images.map((img, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <Img fluid={img.image.asset.fluid} />
+                  {img.imageCaption && (
+                    <ImageCaption>{img.imageCaption}</ImageCaption>
+                  )}
+                </React.Fragment>
+              )
+            })}
+          </TwoPhotoMedium>
+        )
+      case "twoPhotoWide":
+        debugger
+        return
+
       default:
         break
     }

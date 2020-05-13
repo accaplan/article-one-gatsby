@@ -1,5 +1,6 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+
   const result = await graphql(`
     {
       allSanityPost(filter: { slug: { current: { ne: "null" } } }) {
@@ -50,6 +51,18 @@ exports.createPages = async ({ graphql, actions }) => {
             ... on SanityBodyText {
               _key
               _type
+              textContent {
+                _key
+                _type
+                style
+                list
+                sanityChildren {
+                  text
+                  marks
+                  _type
+                  _key
+                }
+              }
             }
             ... on SanityFullBleedPhoto {
               _key
@@ -120,26 +133,51 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
               }
             }
+            ... on SanityTwoPhotoMedium {
+              _key
+              _type
+              images {
+                imageCaption
+                image {
+                  asset {
+                    fluid {
+                      base64
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                    url
+                  }
+                }
+              }
+            }
           }
           credits {
             name
             title
             _key
           }
+          _rawBody
         }
       }
     }
   `)
+
   if (result.errors) {
     throw result.errors
   }
+
   const posts = result.data.allSanityPost.nodes || []
-  posts.forEach((edge, index) => {
-    const path = `/${edge.slug.current}`
+
+  posts.forEach((post, index) => {
+    const path = `/${post.slug.current}`
     createPage({
       path,
       component: require.resolve("./src/templates/post.js"),
-      context: edge,
+      context: post,
     })
   })
 }

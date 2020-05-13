@@ -10,6 +10,10 @@ const Footer = styled.footer`
   margin-top: auto;
   display: flex;
   flex-wrap: wrap;
+  a,
+  p {
+    line-height: 1.5;
+  }
 `
 
 const FooterBlock = styled.section`

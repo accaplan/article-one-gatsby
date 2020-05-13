@@ -15,6 +15,11 @@ const PostLink = styled.article`
   width: 100%;
   box-sizing: border-box;
   padding: 15px;
+  border-bottom: 1px solid;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
 
   @media (min-width: 1024px) {
     padding: 20px;
