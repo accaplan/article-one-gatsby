@@ -160,7 +160,6 @@ const BlogPost = ({ pageContext }) => {
     }
   }
 
-  console.log(pageContext)
   return (
     <Layout>
       <SEO title={pageContext.title} />
