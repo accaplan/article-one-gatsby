@@ -31,6 +31,7 @@ const FooterBlock = styled.section`
   @media (min-width: 1024px) {
     padding: 25px 25px 75px;
     width: 25%;
+    border: 0;
     border-right: 1px solid;
     border-top: 1px solid;
     margin-top: -1px;
