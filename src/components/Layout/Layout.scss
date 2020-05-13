@@ -32,6 +32,16 @@
 }
 
 @font-face {
+  font-family: "HelveticaNowText-Bold";
+  src: url("../../font/HelveticaNowText-Bold.eot");
+  src: url("../../font/HelveticaNowText-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../font/HelveticaNowText-Bold.woff2") format("woff2"),
+    url("../../font/HelveticaNowText-Bold.woff") format("woff"),
+    url("../../font/HelveticaNowText-Bold.otf");
+}
+
+@font-face {
   font-family: "TimesDot-Regular";
   src: url("../../font/Times-Roman.eot");
   src: url("../../font/Times-Roman.eot?#iefix") format("embedded-opentype"),
