@@ -70,7 +70,8 @@ const Header = props => {
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" })
 
-  const home = "https://www.articleoneeyewear.com"
+  // const home = "https://www.articleoneeyewear.com"
+  const home = "/"
 
   const links = [
     {
