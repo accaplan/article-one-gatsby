@@ -232,68 +232,11 @@ const FooterComponent = () => {
           </FieldSet>
 
           {mailChimpResponse && (
-            <Response>{mailChimpResponse.message}</Response>
+            <Response className={mailChimpResponse.result}>
+              {mailChimpResponse.message}
+            </Response>
           )}
         </Form>
-        {/* <div id="mc_embed_signup">
-          <form
-            action="https://aframeseyewear.us7.list-manage.com/subscribe/post?u=af9ed416575a291f26824957b&amp;id=185ef03f71"
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            className="validate contact-form"
-            target="_blank"
-            novalidate
-          >
-            <div id="mce-responses" className="clear">
-              <div
-                className="response"
-                id="mce-error-response"
-                style={{ display: "none" }}
-              ></div>
-              <div
-                className="response"
-                id="mce-success-response"
-                style={{ display: "none" }}
-              ></div>
-            </div>
-            <div className="mc-field-group email-input">
-              <label for="mce-EMAIL" className="no-visibility">
-                Email Address <span className="asterisk">*</span>
-              </label>
-              <input
-                type="email"
-                value=""
-                id="newsletter-email"
-                name="EMAIL"
-                className="required email"
-                id="mce-EMAIL"
-                placeholder="Join our newsletter"
-              />
-              <button
-                name="button"
-                type="submit"
-                value="Subscribe"
-                name="subscribe"
-                id="mc-embedded-subscribe"
-              >
-                <div className="circle"></div>
-              </button>
-            </div>
-            <div
-              style={{ position: "absolute", left: "-5000px" }}
-              aria-hidden="true"
-            >
-              <input
-                type="text"
-                name="b_af9ed416575a291f26824957b_185ef03f71"
-                tabindex="-1"
-                value=""
-              />
-            </div>
-          </form>
-        </div> */}
-        {/* <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>{(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='MMERGE3';ftypes[3]='url';}(jQuery));var $mcj = jQuery.noConflict(true);}</script> */}
       </NewsletterBlock>
 
       <SiteCredits>
