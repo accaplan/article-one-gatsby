@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useMediaQuery } from "react-responsive"
 import SearchBar from "./SearchBar"
 
 const MobileMenuWrapper = styled.section`

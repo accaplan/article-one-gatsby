@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Layout from "../components/Layout/Layout"
 import SEO from "../components/seo"
 import styled from "styled-components"
@@ -84,14 +84,37 @@ const BylineName = styled.span`
 `
 
 const PostBodyWrapper = styled.main`
-  padding: 15px;
+  padding: 0px 15px 50px;
 
   @media (min-width: 1024px) {
     padding: 0;
   }
 `
 
-const IntroText = styled(BlockContent)``
+const IntroText = styled.h3`
+  font-family: "TimesNow-Regular";
+  font-size: 1.5em;
+  padding: 50px 0;
+
+  @media (min-width: 1024px) {
+    padding: 75px 20px;
+    font-size: 1.75em;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 100px 20px;
+    font-size: 2em;
+  }
+
+  @media (min-width: 1600px) {
+    padding: 150px 20px;
+    font-size: 2.5em;
+  }
+
+  @media (min-width: 1800px) {
+    font-size: 3em;
+  }
+`
 
 const BodyText = styled(BlockContent)``
 
@@ -108,14 +131,9 @@ const TwoPhotoMedium = styled(TwoPhotoWide)``
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
     switch (section._type) {
-      case "introText":
-        const blocks = pageContext._rawBody.find(
-          item => item._key === section._key
-        )
-        return <IntroText blocks={blocks.intro} />
       case "fullBleedPhoto":
         return (
-          <FullBleedImage>
+          <FullBleedImage key={section._key}>
             <Img fluid={section.image.asset.fluid} />
             {section.imageCaption && (
               <ImageCaption>{section.imageCaption}</ImageCaption>
@@ -126,10 +144,10 @@ const BlogPost = ({ pageContext }) => {
         const textBlocks = pageContext._rawBody.find(
           item => item._key === section._key
         )
-        return <BodyText blocks={textBlocks.textContent} />
+        return <BodyText blocks={textBlocks.textContent} key={section._key} />
       case "inlinePhoto":
         return (
-          <InlineImage>
+          <InlineImage key={section._key}>
             <Img fluid={section.image.asset.fluid} />
             {section.imageCaption && (
               <ImageCaption>{section.imageCaption}</ImageCaption>
@@ -138,7 +156,7 @@ const BlogPost = ({ pageContext }) => {
         )
       case "twoPhotoMedium":
         return (
-          <TwoPhotoMedium>
+          <TwoPhotoMedium key={section._key}>
             {section.images.map((img, index) => {
               return (
                 <React.Fragment key={index}>
@@ -152,9 +170,20 @@ const BlogPost = ({ pageContext }) => {
           </TwoPhotoMedium>
         )
       case "twoPhotoWide":
-        debugger
-        return
-
+        return (
+          <TwoPhotoWide key={section._key}>
+            {section.images.map((img, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <Img fluid={img.image.asset.fluid} />
+                  {img.imageCaption && (
+                    <ImageCaption>{img.imageCaption}</ImageCaption>
+                  )}
+                </React.Fragment>
+              )
+            })}
+          </TwoPhotoWide>
+        )
       default:
         break
     }
@@ -186,6 +215,9 @@ const BlogPost = ({ pageContext }) => {
           </PostIntroHero>
         </PostIntroSection>
         <PostBodyWrapper>
+          {pageContext.introText && (
+            <IntroText>{pageContext.introText}</IntroText>
+          )}
           {pageContext.body.map(section => serializeSections(section))}
         </PostBodyWrapper>
       </PostWrapper>

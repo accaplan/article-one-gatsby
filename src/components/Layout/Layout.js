@@ -1,9 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 import Header from "../Header"
 import Footer from "../Footer"
-import { useStaticQuery, graphql } from "gatsby"
 import "reset-css"
 import "./Layout.scss"
 

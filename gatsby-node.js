@@ -47,6 +47,7 @@ exports.createPages = async ({ graphql, actions }) => {
               url
             }
           }
+          introText
           body {
             ... on SanityBodyText {
               _key
@@ -100,16 +101,6 @@ exports.createPages = async ({ graphql, actions }) => {
                   }
                   url
                 }
-              }
-            }
-            ... on SanityIntroText {
-              _key
-              _type
-              intro {
-                _key
-                _type
-                style
-                list
               }
             }
             ... on SanityTwoPhotoWide {
