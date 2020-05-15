@@ -23,7 +23,7 @@ const PostIntro = styled.aside`
   text-align: center;
 
   @media (min-width: 1024px) {
-    padding: 20px;
+    padding: 100px 20px;
     width: 50%;
     text-align: left;
   }
@@ -84,7 +84,7 @@ const BylineName = styled.span`
 `
 
 const PostBodyWrapper = styled.main`
-  padding: 0px 15px 50px;
+  padding: 0px 0px 50px;
 
   @media (min-width: 1024px) {
     padding: 0;
@@ -116,17 +116,86 @@ const IntroText = styled.h3`
   }
 `
 
-const BodyText = styled(BlockContent)``
+const BodyText = styled(BlockContent)`
+  padding: 20px 15px;
 
-const ImageCaption = styled.figcaption``
+  strong {
+    display: block;
+    padding-bottom: 10px;
+    font-family: "HelveticaNowText-Bold";
+  }
 
-const FullBleedImage = styled.figure``
+  ol {
+    list-style: decimal-leading-zero;
+    padding: 10px 40px;
+  }
 
-const InlineImage = styled(FullBleedImage)``
+  @media (min-width: 1024px) {
+    font-size: 1.2307692308em;
+    max-width: 500px;
+    padding: 0 20px;
+    margin: 50px auto;
+  }
 
-const TwoPhotoWide = styled.aside``
+  @media (min-width: 1400px) {
+    max-width: 600px;
+    font-size: 1.33em;
+  }
+`
 
-const TwoPhotoMedium = styled(TwoPhotoWide)``
+const ImageCaption = styled.figcaption`
+  padding: 10px 0 0 20px;
+  font-family: "TimesNow-Regular";
+`
+
+const FullBleedImage = styled.figure`
+  width: 100%;
+`
+
+const InlineImage = styled(FullBleedImage)`
+  @media (min-width: 1024px) {
+    max-width: 500px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 600px;
+  }
+`
+
+const TwoPhotoWide = styled.aside`
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+
+  @media (min-width: 1024px) {
+    padding: 20px;
+  }
+`
+
+const TwoPhotoMedium = styled(TwoPhotoWide)`
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    flex: 1;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    justify-content: space-between;
+    max-width: 75%;
+    margin: 0 auto;
+    flex-direction: row;
+
+    img {
+      max-width: calc(50% - 10px);
+    }
+  }
+`
 
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
@@ -160,7 +229,7 @@ const BlogPost = ({ pageContext }) => {
             {section.images.map((img, index) => {
               return (
                 <React.Fragment key={index}>
-                  <Img fluid={img.image.asset.fluid} />
+                  <img src={img.image.asset.url} />
                   {img.imageCaption && (
                     <ImageCaption>{img.imageCaption}</ImageCaption>
                   )}
@@ -175,7 +244,7 @@ const BlogPost = ({ pageContext }) => {
             {section.images.map((img, index) => {
               return (
                 <React.Fragment key={index}>
-                  <Img fluid={img.image.asset.fluid} />
+                  <img src={img.image.asset.url} />
                   {img.imageCaption && (
                     <ImageCaption>{img.imageCaption}</ImageCaption>
                   )}
