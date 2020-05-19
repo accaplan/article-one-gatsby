@@ -93,8 +93,8 @@ const PostBodyWrapper = styled.main`
 
 const IntroText = styled.h3`
   font-family: "TimesNow-Regular";
-  font-size: 1.5em;
-  padding: 50px 0;
+  font-size: 1.75em;
+  padding: 50px 20px;
 
   @media (min-width: 1024px) {
     padding: 75px 20px;
@@ -118,11 +118,24 @@ const IntroText = styled.h3`
 
 const BodyText = styled(BlockContent)`
   padding: 20px 15px;
+  font-family: "TimesNow-Regular";
 
+  h1,
+  h2,
+  h3,
+  h4,
   strong {
     display: block;
     padding-bottom: 10px;
     font-family: "HelveticaNowText-Bold";
+  }
+
+  strong {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 16px;
   }
 
   ol {
@@ -131,15 +144,23 @@ const BodyText = styled(BlockContent)`
   }
 
   @media (min-width: 1024px) {
+    strong {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    ol {
+      padding: 20px 40px 24px;
+      font-size: 18px;
+    }
+
     font-size: 1.2307692308em;
-    max-width: 500px;
+    max-width: 700px;
     padding: 0 20px;
     margin: 50px auto;
-  }
-
-  @media (min-width: 1400px) {
-    max-width: 600px;
-    font-size: 1.33em;
   }
 `
 
@@ -150,17 +171,22 @@ const ImageCaption = styled.figcaption`
 
 const FullBleedImage = styled.figure`
   width: 100%;
+  padding: 0 0 50px;
+
+  @media (min-width: 1024px) {
+    padding: 100px 0 100px;
+
+    &:first-of-type {
+      padding: 0 0 100px;
+    }
+  }
 `
 
 const InlineImage = styled(FullBleedImage)`
   @media (min-width: 1024px) {
-    max-width: 500px;
-    padding: 0 20px;
+    max-width: 700px;
+    padding: 50px 20px;
     margin: 0 auto;
-  }
-
-  @media (min-width: 1400px) {
-    max-width: 600px;
   }
 `
 
