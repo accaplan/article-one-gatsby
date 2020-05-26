@@ -101,7 +101,7 @@ const Header = props => {
   ]
   return (
     <>
-      <HeaderWrapper>
+      <HeaderWrapper className="header">
         {isTabletOrMobile ? (
           <MobileHeader>
             <MenuImg src={MobileMenuIcon} onClick={() => setMenuOpen(true)} />

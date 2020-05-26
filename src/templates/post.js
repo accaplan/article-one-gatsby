@@ -12,27 +12,38 @@ const PostIntroSection = styled.section`
   flex-direction: column;
 
   @media (min-width: 1024px) {
-    flex-direction: row;
+    flex-direction: ${props =>
+      props.layout === "top-bottom" ? "column" : "row"};
   }
 `
 
 const PostIntro = styled.aside`
   width: 100%;
-  padding: 15px;
+  padding: 50px 15px;
   box-sizing: border-box;
   text-align: center;
 
   @media (min-width: 1024px) {
     padding: 100px 20px;
-    width: 50%;
+    flex: 1;
     text-align: left;
+
+    &.centered {
+      text-align: center;
+
+      .subtitle {
+        max-width: 50ch;
+        padding: 0;
+        margin: 0 auto 40px;
+      }
+    }
   }
 `
 
 const PostIntroHero = styled.aside`
   width: 100%;
   @media (min-width: 1024px) {
-    width: 50%;
+    flex: 1;
   }
 `
 
@@ -84,7 +95,7 @@ const BylineName = styled.span`
 `
 
 const PostBodyWrapper = styled.main`
-  padding: 0px 0px 50px;
+  padding: 25px 0px 25px;
 
   @media (min-width: 1024px) {
     padding: 0;
@@ -94,7 +105,7 @@ const PostBodyWrapper = styled.main`
 const IntroText = styled.h3`
   font-family: "TimesNow-Regular";
   font-size: 1.75em;
-  padding: 50px 20px;
+  padding: 25px 20px;
 
   @media (min-width: 1024px) {
     padding: 75px 20px;
@@ -117,7 +128,7 @@ const IntroText = styled.h3`
 `
 
 const BodyText = styled(BlockContent)`
-  padding: 20px 15px;
+  padding: 25px 15px;
   font-family: "TimesNow-Regular";
 
   h1,
@@ -141,6 +152,7 @@ const BodyText = styled(BlockContent)`
   ol {
     list-style: decimal-leading-zero;
     padding: 10px 40px;
+    margin-bottom: 1em;
   }
 
   @media (min-width: 1024px) {
@@ -171,7 +183,7 @@ const ImageCaption = styled.figcaption`
 
 const FullBleedImage = styled.figure`
   width: 100%;
-  padding: 0 0 50px;
+  padding: 25px 0;
 
   @media (min-width: 1024px) {
     padding: 100px 0 100px;
@@ -182,7 +194,8 @@ const FullBleedImage = styled.figure`
   }
 `
 
-const InlineImage = styled(FullBleedImage)`
+const InlineImage = styled.figure`
+  padding: 25px 15px;
   @media (min-width: 1024px) {
     max-width: 700px;
     padding: 50px 20px;
@@ -193,7 +206,7 @@ const InlineImage = styled(FullBleedImage)`
 const TwoPhotoWide = styled.aside`
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 25px 15px;
 
   @media (min-width: 1024px) {
     padding: 20px;
@@ -201,14 +214,17 @@ const TwoPhotoWide = styled.aside`
 `
 
 const TwoPhotoMedium = styled(TwoPhotoWide)`
-  padding: 15px;
+  padding: 25px 15px;
   display: flex;
   flex-direction: column;
 
   img {
     flex: 1;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    &:last-of-type {
+      margin: 0;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -288,12 +304,18 @@ const BlogPost = ({ pageContext }) => {
     <Layout>
       <SEO title={pageContext.title} />
       <PostWrapper>
-        <PostIntroSection>
-          <PostIntro>
+        <PostIntroSection layout={pageContext.heroImage.layout}>
+          <PostIntro
+            className={
+              pageContext.heroImage.layout === "top-bottom" ? "centered" : ""
+            }
+          >
             <PostTitle>{pageContext.title}</PostTitle>
 
             {pageContext.subhead && (
-              <PostSubTitle>{pageContext.subhead}</PostSubTitle>
+              <PostSubTitle className="subtitle">
+                {pageContext.subhead}
+              </PostSubTitle>
             )}
 
             {pageContext.byline.length &&
@@ -305,7 +327,7 @@ const BlogPost = ({ pageContext }) => {
           </PostIntro>
           <PostIntroHero>
             {pageContext.heroImage && (
-              <Img fluid={pageContext.heroImage.asset.fluid} />
+              <Img fluid={pageContext.heroImage.image.asset.fluid} />
             )}
           </PostIntroHero>
         </PostIntroSection>

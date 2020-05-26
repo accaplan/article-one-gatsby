@@ -16,8 +16,8 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           subhead
           byline {
-            title
             name
+            title
           }
           thumbnail {
             asset {
@@ -34,17 +34,22 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
           heroImage {
-            asset {
-              fluid {
-                base64
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
+            _key
+            _type
+            layout
+            image {
+              asset {
+                url
+                fluid {
+                  base64
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
+                }
               }
-              url
             }
           }
           introText
@@ -55,14 +60,8 @@ exports.createPages = async ({ graphql, actions }) => {
               textContent {
                 _key
                 _type
-                style
                 list
-                sanityChildren {
-                  text
-                  marks
-                  _type
-                  _key
-                }
+                style
               }
             }
             ... on SanityFullBleedPhoto {
@@ -71,6 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
               imageCaption
               image {
                 asset {
+                  url
                   fluid {
                     base64
                     aspectRatio
@@ -80,7 +80,6 @@ exports.createPages = async ({ graphql, actions }) => {
                     srcSetWebp
                     sizes
                   }
-                  url
                 }
               }
             }
@@ -90,6 +89,7 @@ exports.createPages = async ({ graphql, actions }) => {
               imageCaption
               image {
                 asset {
+                  url
                   fluid {
                     base64
                     aspectRatio
@@ -99,8 +99,42 @@ exports.createPages = async ({ graphql, actions }) => {
                     srcSetWebp
                     sizes
                   }
-                  url
                 }
+              }
+            }
+            ... on SanityPullQuote {
+              _key
+              _type
+              quote {
+                _key
+                _type
+                list
+                style
+              }
+            }
+            ... on SanityTwoPhotoMedium {
+              _key
+              _type
+              images {
+                imageCaption
+                image {
+                  _type
+                  _key
+                  asset {
+                    url
+                    fluid {
+                      base64
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                  }
+                }
+                _type
+                _key
               }
             }
             ... on SanityTwoPhotoWide {
@@ -110,6 +144,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 imageCaption
                 image {
                   asset {
+                    url
                     fluid {
                       base64
                       aspectRatio
@@ -119,37 +154,15 @@ exports.createPages = async ({ graphql, actions }) => {
                       srcSetWebp
                       sizes
                     }
-                    url
-                  }
-                }
-              }
-            }
-            ... on SanityTwoPhotoMedium {
-              _key
-              _type
-              images {
-                imageCaption
-                image {
-                  asset {
-                    fluid {
-                      base64
-                      aspectRatio
-                      src
-                      srcSet
-                      srcWebp
-                      srcSetWebp
-                      sizes
-                    }
-                    url
                   }
                 }
               }
             }
           }
           credits {
-            name
+            url
             title
-            _key
+            name
           }
           _rawBody
         }

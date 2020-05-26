@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useMediaQuery } from "react-responsive"
 import Arrow from "../images/arrow-forward.svg"
@@ -7,7 +7,8 @@ const CategoryBar = styled.nav`
   border-bottom: 1px solid;
   display: flex;
   position: sticky;
-  top: 0;
+  top: ${props => (props.height ? props.height : "44px")};
+  z-index: 2;
 `
 
 const Category = styled.button`
@@ -16,6 +17,7 @@ const Category = styled.button`
   flex: 1;
   padding: 15px;
   margin: 0;
+  background-color: white;
   cursor: pointer;
 
   &:last-of-type {
@@ -89,13 +91,20 @@ const MobileFilterArrow = styled.img`
 `
 
 const CategoryBarComponent = ({ categories, currentCategory, onClick }) => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" })
   const [mobileExpand, setMobileExpand] = useState(false)
+  const [headerHeight, setHeaderHeight] = useState(null)
+
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" })
+
+  useEffect(() => {
+    const header = document.querySelector(".header")
+    setHeaderHeight(header.height)
+  })
 
   return (
     <>
       {isTabletOrMobile ? (
-        <MobileCategories>
+        <MobileCategories height={headerHeight}>
           <MobileCategoryHeader
             onClick={() => setMobileExpand(!mobileExpand)}
             className={mobileExpand && "open"}
@@ -130,7 +139,7 @@ const CategoryBarComponent = ({ categories, currentCategory, onClick }) => {
           )}
         </MobileCategories>
       ) : (
-        <CategoryBar>
+        <CategoryBar height={headerHeight}>
           {categories.map((cat, index) => (
             <Category
               onClick={() => onClick(cat.title)}

@@ -29,6 +29,8 @@ const SearchForm = styled.form`
   font-size: 1rem;
   width: 100%;
   display: flex;
+  position: sticky;
+  top: 200px;
   align-items: center;
 `
 
