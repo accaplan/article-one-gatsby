@@ -206,23 +206,34 @@ const PullQuote = styled.section`
 
   @media (min-width: 1024px) {
     padding: 25px 50px;
-    max-width: 65ch;
-    margin: 0 auto;
-    font-size: 2em;
+    p,
+    em {
+      margin: 0 auto;
+      max-width: 65ch;
+      font-size: 2em;
+    }
   }
 
   @media (min-width: 1200px) {
     padding: 50px;
-    font-size: 2.25em;
-    margin: 0 auto;
+    p,
+    em {
+      font-size: 2.25em;
+    }
   }
 
   @media (min-width: 1600px) {
-    font-size: 2.5em;
+    p,
+    em {
+      font-size: 2.5em;
+    }
   }
 
   @media (min-width: 1800px) {
-    font-size: 2.75em;
+    p,
+    em {
+      font-size: 2.75em;
+    }
   }
 `
 
