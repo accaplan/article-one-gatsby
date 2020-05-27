@@ -201,7 +201,7 @@ const PullQuote = styled.section`
   p,
   em {
     line-height: 1.3333;
-    font-size: 1.25em;
+    font-size: 22px;
   }
 
   @media (min-width: 1024px) {
