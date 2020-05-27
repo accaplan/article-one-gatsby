@@ -97,7 +97,7 @@ const BylineName = styled.span`
 `
 
 const PostBodyWrapper = styled.main`
-  padding: 25px 0px 25px;
+  padding: 25px 0px 50px;
 
   @media (min-width: 1024px) {
     padding: 0 0 75px;
@@ -340,6 +340,10 @@ const CreditName = styled.span`
   font-size: 1.125rem;
 `
 
+const CreditsSection = styled.section`
+  padding-top: 25px;
+`
+
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
     switch (section._type) {
@@ -476,25 +480,28 @@ const BlogPost = ({ pageContext }) => {
             <IntroText>{pageContext.introText}</IntroText>
           )}
           {pageContext.body.map(section => serializeSections(section))}
-          {pageContext.credits.length &&
-            pageContext.credits.map((item, index) => (
-              <Credit key={index}>
-                {item.title}:{" "}
-                <CreditName>
-                  {item.url ? (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      {item.name}
-                    </a>
-                  ) : (
-                    `${item.name}`
-                  )}
-                </CreditName>
-              </Credit>
-            ))}
+          {pageContext.credits.length && (
+            <CreditsSection>
+              {pageContext.credits.map((item, index) => (
+                <Credit key={index}>
+                  {item.title}:{" "}
+                  <CreditName>
+                    {item.url ? (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      `${item.name}`
+                    )}
+                  </CreditName>
+                </Credit>
+              ))}
+            </CreditsSection>
+          )}
         </PostBodyWrapper>
       </PostWrapper>
     </Layout>
