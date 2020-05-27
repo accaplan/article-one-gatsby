@@ -192,7 +192,7 @@ const BodyText = styled(BlockContent)`
   }
 `
 
-const PullQuote = styled(BlockContent)`
+const PullQuote = styled.section`
   font-family: "TimesNow-Italic";
   font-style: italic;
   text-align: center;
@@ -410,8 +410,11 @@ const BlogPost = ({ pageContext }) => {
         const quoteBlocks = pageContext._rawBody.find(
           item => item._key === section._key
         )
-
-        return <PullQuote blocks={quoteBlocks.quote} />
+        return (
+          <PullQuote>
+            <BlockContent blocks={quoteBlocks.quote} />
+          </PullQuote>
+        )
         break
       case "externalVideo":
         const youTube = section.videoUrl.includes("youtube")
@@ -463,7 +466,7 @@ const BlogPost = ({ pageContext }) => {
               </PostSubTitle>
             )}
 
-            {pageContext.byline.length &&
+            {pageContext.byline.length > 0 &&
               pageContext.byline.map((item, index) => (
                 <PostByline key={index}>
                   {item.title}: <BylineName>{item.name}</BylineName>
@@ -481,7 +484,7 @@ const BlogPost = ({ pageContext }) => {
             <IntroText>{pageContext.introText}</IntroText>
           )}
           {pageContext.body.map(section => serializeSections(section))}
-          {pageContext.credits.length && (
+          {pageContext.credits.length > 0 && (
             <CreditsSection>
               {pageContext.credits.map((item, index) => (
                 <Credit key={index}>

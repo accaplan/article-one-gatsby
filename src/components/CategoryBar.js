@@ -7,7 +7,7 @@ const CategoryBar = styled.nav`
   border-bottom: 1px solid;
   display: flex;
   position: sticky;
-  top: ${props => (props.height ? props.height : "44px")};
+  top: ${props => (props.height ? `${props.height}px` : "39px")};
   z-index: 2;
 `
 
@@ -99,7 +99,8 @@ const CategoryBarComponent = ({ categories, currentCategory, onClick }) => {
   useEffect(() => {
     const header = document.querySelector(".header")
     setHeaderHeight(header.height)
-  })
+    // debugger
+  }, [])
 
   return (
     <>

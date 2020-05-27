@@ -30,7 +30,9 @@ const MobileHeader = styled.nav`
   justify-content: space-between;
 `
 
-const Logo = styled.h1``
+const Logo = styled.h1`
+  margin: 0;
+`
 
 const Nav = styled.nav``
 
