@@ -194,6 +194,7 @@ const BodyText = styled(BlockContent)`
 
 const PullQuote = styled(BlockContent)`
   font-family: "TimesNow-Italic";
+  font-style: italic;
   text-align: center;
   padding: 25px 20px;
 
