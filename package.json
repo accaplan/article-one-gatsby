@@ -27,6 +27,7 @@
     "react-helmet": "^5.2.1",
     "react-responsive": "^8.0.1",
     "reset-css": "^5.0.1",
+    "shopify-buy": "^2.10.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {

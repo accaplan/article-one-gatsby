@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { useMediaQuery } from "react-responsive"
 import SearchBar from "./SearchBar"
@@ -6,6 +6,7 @@ import MobileMenu from "./MobileMenu"
 import SearchIcon from "../images/search.svg"
 import MobileMenuIcon from "../images/menu.svg"
 import CartIcon from "../images/cart.svg"
+import ShopContext from "../context/ShopContext"
 
 const HeaderWrapper = styled.header`
   position: sticky;
@@ -70,6 +71,8 @@ const Header = props => {
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" })
 
+  const context = useContext(ShopContext)
+
   // const home = "https://www.articleoneeyewear.com"
   const home = "/"
 
@@ -99,6 +102,10 @@ const Header = props => {
       title: "Find Us",
     },
   ]
+
+  useEffect(() => {
+    const aoCart = localStorage.getItem("aoCart")
+  }, [])
   return (
     <>
       <HeaderWrapper className="header">
@@ -124,7 +131,7 @@ const Header = props => {
               <Link onClick={() => setSearchOpen(!searchOpen)}>
                 Search <SearchImg src={SearchIcon} />
               </Link>
-              <Link>Cart (0)</Link>
+              <Link>Cart ({context.checkout.lineItems.length})</Link>
             </Nav>
           </DesktopHeaderWrapper>
         )}

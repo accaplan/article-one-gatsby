@@ -154,7 +154,15 @@ const IndexPage = () => {
                   <PostInfo>
                     <Title>{post.title}</Title>
                     <Subtitle>{post.subhead}</Subtitle>
-                    <PostCategory>({post.category[0].title})</PostCategory>
+                    <PostCategory>
+                      (
+                      {post.category.map((item, index) => {
+                        return index === post.category.length - 1
+                          ? `${item.title}`
+                          : `${item.title}, `
+                      })}
+                      )
+                    </PostCategory>
                   </PostInfo>
                 </Link>
               </PostLink>
