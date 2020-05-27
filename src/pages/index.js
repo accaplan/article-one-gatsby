@@ -134,9 +134,9 @@ const IndexPage = () => {
     if (value === "All Stories") {
       newCurrentPosts = data.allSanityPost.nodes
     } else {
-      newCurrentPosts = allPosts.filter(
-        post => post.category[0].title === value
-      )
+      newCurrentPosts = allPosts.filter(post => {
+        return post.category.find(item => item.title === value) && post
+      })
     }
 
     setCurrentPosts(newCurrentPosts)
