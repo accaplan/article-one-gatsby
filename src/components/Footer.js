@@ -98,7 +98,7 @@ const Input = styled.input`
   width: calc(100% - 22px);
 
   &::placeholder {
-    color: grey;
+    color: black;
   }
 
   &:focus {
