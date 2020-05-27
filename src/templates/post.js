@@ -141,6 +141,11 @@ const BodyText = styled(BlockContent)`
     font-family: "HelveticaNowText-Bold";
   }
 
+  strong,
+  p {
+    line-height: 1.3333;
+  }
+
   strong {
     font-size: 15px;
   }
