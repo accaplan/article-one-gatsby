@@ -91,8 +91,8 @@ const Header = props => {
 
   const context = useContext(ShopContext)
 
-  // const home = "https://www.articleoneeyewear.com"
-  const home = "/"
+  const home = "https://www.articleoneeyewear.com"
+  // const home = "/"
 
   const links = [
     {
@@ -138,11 +138,10 @@ const Header = props => {
         ) : (
           <DesktopHeaderWrapper>
             <Logo>
-              <Link href={home}>Article One</Link>
+              <InnerLink href={home}>Article One</InnerLink>
             </Logo>
             <Nav>
               {links.map((item, index) => {
-                // return item.link === "/"
                 return item.link === "/" ? (
                   <InnerLink to={item.link}>{item.title}</InnerLink>
                 ) : (
@@ -154,7 +153,9 @@ const Header = props => {
               <NavLink onClick={() => setSearchOpen(!searchOpen)}>
                 Search <SearchImg src={SearchIcon} />
               </NavLink>
-              <NavLink>Cart ({context.checkout.lineItems.length})</NavLink>
+              <NavLink href="https://articleoneeyewear.com/cart">
+                Cart ({context.checkout.lineItems.length})
+              </NavLink>
             </Nav>
           </DesktopHeaderWrapper>
         )}
