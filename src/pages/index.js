@@ -145,7 +145,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Stories" />
       <CategoryBar
         categories={allCategories}
         currentCategory={currentCategory}
