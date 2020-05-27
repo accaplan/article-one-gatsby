@@ -4,6 +4,8 @@ import SEO from "../components/seo"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import BlockContent from "@sanity/block-content-to-react"
+import ReactPlayer from "react-player"
+import { Player } from "video-react"
 
 const PostWrapper = styled.main``
 
@@ -98,7 +100,7 @@ const PostBodyWrapper = styled.main`
   padding: 25px 0px 25px;
 
   @media (min-width: 1024px) {
-    padding: 0;
+    padding: 0 0 75px;
   }
 `
 
@@ -106,6 +108,8 @@ const IntroText = styled.h3`
   font-family: "TimesNow-Regular";
   font-size: 1.75em;
   padding: 25px 20px;
+  line-height: 1.125;
+  font-weight: normal;
 
   @media (min-width: 1024px) {
     padding: 75px 20px;
@@ -113,13 +117,16 @@ const IntroText = styled.h3`
   }
 
   @media (min-width: 1200px) {
-    padding: 100px 20px;
-    font-size: 2em;
+    padding: 100px 50px 50px;
+    font-size: 2.25em;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   @media (min-width: 1600px) {
-    padding: 150px 20px;
+    padding: 150px 50px 100px;
     font-size: 2.5em;
+    max-width: 1400px;
   }
 
   @media (min-width: 1800px) {
@@ -147,17 +154,21 @@ const BodyText = styled(BlockContent)`
   }
 
   strong {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   p {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   ol {
     list-style: decimal-leading-zero;
     padding: 10px 40px;
     margin-bottom: 1em;
+  }
+
+  a {
+    text-decoration: underline;
   }
 
   @media (min-width: 1024px) {
@@ -181,6 +192,38 @@ const BodyText = styled(BlockContent)`
   }
 `
 
+const PullQuote = styled(BlockContent)`
+  font-family: "TimesNow-Italic";
+  text-align: center;
+  padding: 25px 20px;
+
+  p,
+  em {
+    line-height: 1.3333;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 25px 50px;
+    max-width: 65ch;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 50px;
+    font-size: 2.25em;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1600px) {
+    font-size: 2.5em;
+  }
+
+  @media (min-width: 1800px) {
+    font-size: 2.75em;
+  }
+`
+
 const ImageCaption = styled.figcaption`
   padding: 10px 0 0 20px;
   font-family: "TimesNow-Regular";
@@ -191,11 +234,7 @@ const FullBleedImage = styled.figure`
   padding: 25px 0;
 
   @media (min-width: 1024px) {
-    padding: 100px 0 100px;
-
-    &:first-of-type {
-      padding: 0 0 100px;
-    }
+    padding: 75px 0;
   }
 `
 
@@ -244,6 +283,62 @@ const TwoPhotoMedium = styled(TwoPhotoWide)`
   }
 `
 
+const VideoSection = styled.section`
+  margin: 25px 0;
+
+  &.youtube {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.vimeo {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    margin: 100px 0;
+  }
+`
+
+const Credit = styled.p`
+  text-align: center;
+  a {
+    text-decoration: underline;
+  }
+`
+
+const CreditName = styled.span`
+  font-family: "TimesNow-Regular";
+  font-size: 1.125rem;
+`
+
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
     switch (section._type) {
@@ -256,11 +351,13 @@ const BlogPost = ({ pageContext }) => {
             )}
           </FullBleedImage>
         )
+        break
       case "bodyText":
         const textBlocks = pageContext._rawBody.find(
           item => item._key === section._key
         )
         return <BodyText blocks={textBlocks.textContent} key={section._key} />
+        break
       case "inlinePhoto":
         return (
           <InlineImage key={section._key}>
@@ -270,6 +367,7 @@ const BlogPost = ({ pageContext }) => {
             )}
           </InlineImage>
         )
+        break
       case "twoPhotoMedium":
         return (
           <TwoPhotoMedium key={section._key}>
@@ -285,6 +383,7 @@ const BlogPost = ({ pageContext }) => {
             })}
           </TwoPhotoMedium>
         )
+        break
       case "twoPhotoWide":
         return (
           <TwoPhotoWide key={section._key}>
@@ -300,6 +399,41 @@ const BlogPost = ({ pageContext }) => {
             })}
           </TwoPhotoWide>
         )
+        break
+      case "pullQuote":
+        const quoteBlocks = pageContext._rawBody.find(
+          item => item._key === section._key
+        )
+
+        return <PullQuote blocks={quoteBlocks.quote} />
+        break
+      case "externalVideo":
+        const youTube = section.videoUrl.includes("youtube")
+        const vimeo = section.videoUrl.includes("vimeo")
+
+        return (
+          <VideoSection
+            className={`${youTube ? "youtube" : ""} ${vimeo ? "vimeo" : ""}`}
+          >
+            <ReactPlayer url={section.videoUrl} controls={true} />
+          </VideoSection>
+        )
+
+        break
+      case "videoFile":
+        debugger
+        return (
+          <VideoSection className="uploaded-video">
+            {/* <Player
+              playsInline
+              autoPlay={false}
+              loop={false}
+              muted={false}
+              src={}
+            /> */}
+          </VideoSection>
+        )
+        break
       default:
         break
     }
@@ -341,6 +475,25 @@ const BlogPost = ({ pageContext }) => {
             <IntroText>{pageContext.introText}</IntroText>
           )}
           {pageContext.body.map(section => serializeSections(section))}
+          {pageContext.credits.length &&
+            pageContext.credits.map((item, index) => (
+              <Credit key={index}>
+                {item.title}:{" "}
+                <CreditName>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    `${item.name}`
+                  )}
+                </CreditName>
+              </Credit>
+            ))}
         </PostBodyWrapper>
       </PostWrapper>
     </Layout>

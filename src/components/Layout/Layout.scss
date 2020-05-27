@@ -19,6 +19,7 @@
 */
 
 /* @import must be at top of file, otherwise CSS will not work */
+
 @import url("//hello.myfonts.net/count/3ae7db");
 @import "../../_colors.scss";
 
@@ -134,21 +135,6 @@ button {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-a,
-article,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-img,
-section,
-span {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
 input,
 select,
 textarea {

@@ -158,13 +158,27 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
               }
             }
+            ... on SanityExternalVideo {
+              _key
+              _type
+              videoUrl
+            }
+            ... on SanityVideoFile {
+              _key
+              _type
+              url {
+                asset {
+                  url
+                }
+              }
+            }
           }
           credits {
             url
             title
             name
           }
-          _rawBody
+          _rawBody(resolveReferences: { maxDepth: 10 })
         }
       }
     }
