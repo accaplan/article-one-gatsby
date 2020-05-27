@@ -130,15 +130,15 @@ const Header = props => {
         {isTabletOrMobile ? (
           <MobileHeader>
             <MenuImg src={MobileMenuIcon} onClick={() => setMenuOpen(true)} />
-            <Link href={home} className="mobile-logo">
+            <NavLink href={home} className="mobile-logo">
               Article One
-            </Link>
+            </NavLink>
             <CartImg src={CartIcon} />
           </MobileHeader>
         ) : (
           <DesktopHeaderWrapper>
             <Logo>
-              <InnerLink href={home}>Article One</InnerLink>
+              <NavLink href={home}>Article One</NavLink>
             </Logo>
             <Nav>
               {links.map((item, index) => {
