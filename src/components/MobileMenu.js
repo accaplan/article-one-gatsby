@@ -36,7 +36,7 @@ const MobileMenu = styled.aside`
 const MobileMenuHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 11.5px 15px;
   border-bottom: 1px solid;
 `
 
