@@ -7,6 +7,7 @@ import SearchIcon from "../images/search.svg"
 import MobileMenuIcon from "../images/menu.svg"
 import CartIcon from "../images/cart.svg"
 import ShopContext from "../context/ShopContext"
+import { Link } from "gatsby"
 
 const HeaderWrapper = styled.header`
   position: sticky;
@@ -36,7 +37,22 @@ const Logo = styled.h1`
 
 const Nav = styled.nav``
 
-const Link = styled.a`
+const NavLink = styled.a`
+  text-transform: uppercase;
+  margin-left: 25px;
+  cursor: pointer;
+  &:first-of-type {
+    margin: 0;
+  }
+  &.mobile-logo {
+    position: absolute;
+    text-align: center;
+    left: 30%;
+    right: 30%;
+  }
+`
+
+const InnerLink = styled(Link)`
   text-transform: uppercase;
   margin-left: 25px;
   cursor: pointer;
@@ -92,8 +108,8 @@ const Header = props => {
       title: "Active",
     },
     {
-      link: "https://articleoneeyewear.com/products/article-one-gift-card",
-      title: "Gift Card",
+      link: "/",
+      title: "Stories",
     },
     {
       link: "https://articleoneeyewear.com/pages/labor-of-love",
@@ -125,11 +141,16 @@ const Header = props => {
               <Link href={home}>Article One</Link>
             </Logo>
             <Nav>
-              {links.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  {item.title}
-                </Link>
-              ))}
+              {links.map((item, index) => {
+                // return item.link === "/"
+                return item.link === "/" ? (
+                  <InnerLink to={item.link}>{item.title}</InnerLink>
+                ) : (
+                  <NavLink href={item.link} key={index}>
+                    {item.title}
+                  </NavLink>
+                )
+              })}
               <Link onClick={() => setSearchOpen(!searchOpen)}>
                 Search <SearchImg src={SearchIcon} />
               </Link>

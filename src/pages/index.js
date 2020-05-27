@@ -53,12 +53,21 @@ const PostInfo = styled.section`
 const Title = styled.h2`
   text-transform: uppercase;
   padding: 20px 0 10px;
+
+  @media (min-width: 1024px) {
+    padding: 20px 0 0;
+    font-size: 20px;
+  }
 `
 
 const Subtitle = styled.h3`
   font-family: "TimesNow-Regular";
   font-size: 14px;
   line-height: 1.125;
+
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
 `
 
 const PostCategory = styled.p`
