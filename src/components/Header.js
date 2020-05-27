@@ -151,10 +151,10 @@ const Header = props => {
                   </NavLink>
                 )
               })}
-              <Link onClick={() => setSearchOpen(!searchOpen)}>
+              <NavLink onClick={() => setSearchOpen(!searchOpen)}>
                 Search <SearchImg src={SearchIcon} />
-              </Link>
-              <Link>Cart ({context.checkout.lineItems.length})</Link>
+              </NavLink>
+              <NavLink>Cart ({context.checkout.lineItems.length})</NavLink>
             </Nav>
           </DesktopHeaderWrapper>
         )}
