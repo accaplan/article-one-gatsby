@@ -200,6 +200,7 @@ const PullQuote = styled(BlockContent)`
   p,
   em {
     line-height: 1.3333;
+    font-size: 1.25em;
   }
 
   @media (min-width: 1024px) {
