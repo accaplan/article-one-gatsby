@@ -3,7 +3,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      allSanityPost(filter: { slug: { current: { ne: "null" } } }) {
+      allSanityPost(filter: { slug: { current: { ne: null } } }) {
         nodes {
           id
           category {
@@ -53,6 +53,11 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
           introText
+          credits {
+            url
+            title
+            name
+          }
           body {
             ... on SanityBodyText {
               _key
@@ -172,13 +177,28 @@ exports.createPages = async ({ graphql, actions }) => {
                 }
               }
             }
+            ... on SanityPlaylist {
+              _key
+              _type
+              audioUrl
+              title
+              cover {
+                asset {
+                  url
+                  fluid {
+                    base64
+                    aspectRatio
+                    src
+                    srcSet
+                    srcWebp
+                    srcSetWebp
+                    sizes
+                  }
+                }
+              }
+            }
           }
-          credits {
-            url
-            title
-            name
-          }
-          _rawBody(resolveReferences: { maxDepth: 10 })
+          _rawBody(resolveReferences: { maxDepth: 100 })
         }
       }
     }
