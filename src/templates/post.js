@@ -356,6 +356,54 @@ const CreditsSection = styled.section`
   padding-top: 25px;
 `
 
+const PlaylistSection = styled.section`
+  padding: 25px 15px;
+
+  @media (min-width: 1024px) {
+    max-width: 700px;
+    padding: 0 20px;
+    margin: 50px auto;
+  }
+`
+
+const PlaylistImg = styled.aside`
+  margin-bottom: 20px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 50px;
+  }
+`
+
+const PlaylistWrapper = styled.aside``
+
+const Playlist = styled.iframe`
+  width: 100%;
+  height: 350px;
+
+  @media (min-width: 1024px) {
+    height: 500px;
+  }
+`
+
+const PlaylistTitle = styled.h3`
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  @media (min-width: 1024px) {
+    font-size: 28px;
+    margin-bottom: 50px;
+  }
+`
+
+const PlaylistTitleSpan = styled.span`
+  font-size: 0.75em;
+  font-family: "TimesNow-Regular";
+  text-transform: none;
+  padding-right: 20px;
+`
+
 const BlogPost = ({ pageContext }) => {
   const serializeSections = section => {
     switch (section._type) {
@@ -441,7 +489,6 @@ const BlogPost = ({ pageContext }) => {
 
         break
       case "videoFile":
-        debugger
         return (
           <VideoSection className="uploaded-video">
             {/* <Player
@@ -452,6 +499,36 @@ const BlogPost = ({ pageContext }) => {
               src={}
             /> */}
           </VideoSection>
+        )
+        break
+      case "playlist":
+        const albumOrPlaylist = section.audioUrl
+          .split("spotify:")[1]
+          .split(":")[0]
+        const playlistID = section.audioUrl.split(`${albumOrPlaylist}:`)[1]
+
+        return (
+          <PlaylistSection key={section._key}>
+            {section.title && (
+              <PlaylistTitle>
+                <PlaylistTitleSpan>{albumOrPlaylist}:</PlaylistTitleSpan>
+                {section.title}
+              </PlaylistTitle>
+            )}
+            {section.cover?.asset?.fluid && (
+              <PlaylistImg>
+                <Img fluid={section.cover.asset.fluid} alt={section.title} />
+              </PlaylistImg>
+            )}
+            <PlaylistWrapper>
+              <Playlist
+                src={`https://open.spotify.com/embed/${albumOrPlaylist}/${playlistID}`}
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></Playlist>
+            </PlaylistWrapper>
+          </PlaylistSection>
         )
         break
       default:
