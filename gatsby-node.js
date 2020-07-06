@@ -181,7 +181,6 @@ exports.createPages = async ({ graphql, actions }) => {
               _key
               _type
               audioUrl
-              title
               cover {
                 asset {
                   url

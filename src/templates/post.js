@@ -509,12 +509,6 @@ const BlogPost = ({ pageContext }) => {
 
         return (
           <PlaylistSection key={section._key}>
-            {section.title && (
-              <PlaylistTitle>
-                <PlaylistTitleSpan>{albumOrPlaylist}:</PlaylistTitleSpan>
-                {section.title}
-              </PlaylistTitle>
-            )}
             {section.cover?.asset?.fluid && (
               <PlaylistImg>
                 <Img fluid={section.cover.asset.fluid} alt={section.title} />
