@@ -82,57 +82,65 @@ const PostCategory = styled.p`
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
     {
-      allSanityPost(filter: { slug: { current: { ne: "null" } } }) {
-        nodes {
-          id
-          category {
-            id
-            title
-          }
-          title
-          slug {
-            current
-          }
-          thumbnail {
-            asset {
-              fluid {
-                base64
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
-              }
-              url
-            }
-          }
-          subhead
-        }
-      }
       allSanityCategory {
         nodes {
           title
         }
       }
+      allSanityStoryOrder(
+        filter: {
+          storyOrder: { elemMatch: { slug: { current: { ne: null } } } }
+        }
+      ) {
+        nodes {
+          storyOrder {
+            id
+            category {
+              id
+              title
+            }
+            title
+            slug {
+              current
+            }
+            thumbnail {
+              asset {
+                fluid {
+                  base64
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
+                }
+                url
+              }
+            }
+            subhead
+          }
+        }
+      }
     }
   `)
 
-  const [allPosts] = useState(data.allSanityPost.nodes)
+  const [allPosts] = useState(data.allSanityStoryOrder.nodes[0].storyOrder)
   const [allCategories] = useState(
     data.allSanityCategory.nodes.concat({ title: "All Stories" })
   )
   const [currentCategory, setCurrentCategory] = useState({
     title: "All Stories",
   })
-  const [currentPosts, setCurrentPosts] = useState(data.allSanityPost.nodes)
+  const [currentPosts, setCurrentPosts] = useState(
+    data.allSanityStoryOrder.nodes[0].storyOrder
+  )
 
   const filterCategories = value => {
     let newCurrentPosts
     const newCurrentCategory = allCategories.find(cat => cat.title === value)
 
     if (value === "All Stories") {
-      newCurrentPosts = data.allSanityPost.nodes
+      newCurrentPosts = data.allSanityStoryOrder.nodes[0].storyOrder
     } else {
       newCurrentPosts = allPosts.filter(post => {
         return post.category.find(item => item.title === value) && post
