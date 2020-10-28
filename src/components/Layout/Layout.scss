@@ -21,6 +21,7 @@
 /* @import must be at top of file, otherwise CSS will not work */
 
 @import url("//hello.myfonts.net/count/3ae7db");
+@import url("https://use.typekit.net/sjs2djq.css");
 @import "../../_colors.scss";
 
 @font-face {
@@ -90,8 +91,8 @@ html {
 
 body {
   color: $bodycolor;
-  font-family: "HelveticaNowText-Regular", "Helvetica Neue", Helvetica,
-    sans-serif;
+  font-family: neue-haas-unica, "HelveticaNowText-Regular", "Helvetica Neue",
+    Helvetica, sans-serif;
   font-size: 100%;
   #gatsby-focus-wrapper {
     display: flex;
