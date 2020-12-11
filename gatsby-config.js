@@ -31,11 +31,9 @@ module.exports = {
     {
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
-        dataset: process.env.REACT_APP_SANITY_DATASET,
-        token: process.env.REACT_APP_SANITY_API_TOKEN,
-        watchMode: true,
-        overlayDrafts: true,
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
+        token: process.env.GATSBY_SANITY_API_TOKEN,
       },
     },
     `gatsby-plugin-sass`,
