@@ -265,6 +265,10 @@ const TwoPhotoWide = styled.aside`
   justify-content: space-between;
   padding: 25px 15px;
 
+  .two-photo-section {
+    width: calc(50% - 10px);
+  }
+
   @media (min-width: 1024px) {
     padding: 20px;
   }
@@ -454,12 +458,12 @@ const BlogPost = ({ pageContext }) => {
           <TwoPhotoWide key={section._key}>
             {section.images.map((img, index) => {
               return (
-                <React.Fragment key={index}>
+                <aside className="two-photo-section" key={index}>
                   <img src={img.image.asset.url} />
                   {img.imageCaption && (
                     <ImageCaption>{img.imageCaption}</ImageCaption>
                   )}
-                </React.Fragment>
+                </aside>
               )
             })}
           </TwoPhotoWide>
