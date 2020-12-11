@@ -279,7 +279,7 @@ const TwoPhotoMedium = styled(TwoPhotoWide)`
   display: flex;
   flex-direction: column;
 
-  img {
+  aside {
     flex: 1;
     width: 100%;
     margin-bottom: 25px;
@@ -294,7 +294,7 @@ const TwoPhotoMedium = styled(TwoPhotoWide)`
     margin: 0 auto;
     flex-direction: row;
 
-    img {
+    aside {
       max-width: calc(50% - 10px);
     }
   }
@@ -442,12 +442,12 @@ const BlogPost = ({ pageContext }) => {
           <TwoPhotoMedium key={section._key}>
             {section.images.map((img, index) => {
               return (
-                <React.Fragment key={index}>
+                <aside className="two-photo-medium" key={index}>
                   <img src={img.image.asset.url} />
                   {img.imageCaption && (
                     <ImageCaption>{img.imageCaption}</ImageCaption>
                   )}
-                </React.Fragment>
+                </aside>
               )
             })}
           </TwoPhotoMedium>
