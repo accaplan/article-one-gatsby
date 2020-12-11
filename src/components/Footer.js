@@ -202,7 +202,11 @@ const FooterComponent = () => {
             <a href="https://articleoneeyewear.com/pages/about">Contact</a>
           </Link>
           <Link>
-            <a href="https://www.instagram.com/articleone/" target="_blank">
+            <a
+              href="https://www.instagram.com/articleone/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               Instagram
             </a>
           </Link>
@@ -210,6 +214,7 @@ const FooterComponent = () => {
             <a
               href="https://www.facebook.com/articleoneeyewear/"
               target="_blank"
+              rel="noreferrer noopener"
             >
               {" "}
               Facebook
@@ -248,7 +253,11 @@ const FooterComponent = () => {
         <Copyright>© {new Date().getFullYear()} Article One</Copyright>
         <BuenaSuerte>
           Site by{" "}
-          <a href="https://www.buena-suerte.studio" target="_blank" rel="">
+          <a
+            href="https://www.buena-suerte.studio"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             Buena Suerte
           </a>
         </BuenaSuerte>
